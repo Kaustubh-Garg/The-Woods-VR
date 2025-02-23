@@ -29,7 +29,10 @@ Configure the VR settings in Unity based on your device.
 
 🕹️ How to Play
 Objective: Survive as long as possible by defeating enemies and staying out of harm’s way.
+
 Controls:
 	Movement: Use your Left VR controller joystick.
+ 
 	Rotation: Use your Right VR Controller for rotating in the environment.
+ 
 	Attack: While shooting Press the grip button and Pull the trigger to attack enemies.
