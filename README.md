@@ -1,10 +1,8 @@
 🌲 The Woods VR
-
 An Immersive Survival Adventure in Virtual Reality
 Welcome to The Woods VR! Step into a dark, mysterious forest where survival is key. Face off against relentless enemies, navigate eerie surroundings, and stay alive in this adrenaline-pumping VR experience.
 
 🎮 Game Features
-
 Thrilling Gameplay: Immerse yourself in a dark forest teeming with danger.
 Survival Mechanics: Fight off enemies and use strategy to avoid being overpowered.
 Stunning VR Graphics: Experience a chilling and atmospheric environment designed specifically for Virtual Reality.
@@ -29,10 +27,7 @@ Configure the VR settings in Unity based on your device.
 
 🕹️ How to Play
 Objective: Survive as long as possible by defeating enemies and staying out of harm’s way.
-
 Controls:
 	Movement: Use your Left VR controller joystick.
- 
 	Rotation: Use your Right VR Controller for rotating in the environment.
- 
 	Attack: While shooting Press the grip button and Pull the trigger to attack enemies.
