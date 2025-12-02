@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Woods VR – Project Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Project page for The Woods VR – a horror survival VR game by Kaustubh Garg, with links to play on itch.io and view the source code on GitHub." />
+  <style>
+    :root {
+      --bg: #050709;
+      --bg-alt: #0b0f14;
+      --card: #111827;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.12);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --danger: #f97373;
+      --danger-soft: rgba(248, 113, 113, 0.12);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 980px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 1));
+      border-radius: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .page::before {
+      width: 230px;
+      height: 230px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.08), transparent 65%);
+      top: -40px;
+      right: -40px;
+    }
+
+    .page::after {
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(248, 113, 113, 0.08), transparent 65%);
+      bottom: -60px;
+      left: -40px;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 18px 26px;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.98),
+        rgba(15, 23, 42, 0.95)
+      );
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-pill {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a);
+      box-shadow: 0 0 22px rgba(34, 197, 94, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: #022c22;
+    }
+
+    .brand-text h1 {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--muted);
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.16), transparent);
+      white-space: nowrap;
+    }
+
+    main {
+      padding: 26px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 24px;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      body {
+        padding: 16px 8px;
+      }
+      header {
+        padding: 14px 18px;
+      }
+      main {
+        padding: 20px 18px 22px;
+      }
+      .page {
+        border-radius: 22px;
+      }
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      border-radius: 999px;
+      background: linear-gradient(to right, transparent, rgba(148, 163, 184, 0.8));
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 4vw, 32px);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+      text-shadow: 0 0 16px rgba(34, 197, 94, 0.6);
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.96));
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 9px 16px;
+      font-weight: 500;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top, #22c55e, #16a34a);
+      color: #022c22;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 26px rgba(34, 197, 94, 0.8);
+    }
+
+    .btn-secondary {
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.96));
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+    }
+
+    .btn-secondary:hover {
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.9), rgba(15, 23, 42, 0.98));
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px dashed rgba(75, 85, 99, 0.9);
+    }
+
+    .btn-ghost:hover {
+      border-style: solid;
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      font-size: 15px;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.06), rgba(15, 23, 42, 0.96));
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 16px 16px 14px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0, rgba(34, 197, 94, 0.25), transparent 55%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .status-pill {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      background: var(--accent-soft);
+      color: #bbf7d0;
+    }
+
+    .hero-card-body {
+      padding: 10px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .env-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .link-card {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.96));
+      padding: 10px 11px;
+      display: grid;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 1.5fr);
+      gap: 10px;
+      align-items: center;
+      position: relative;
+    }
+
+    .link-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 15% 0, rgba(34, 197, 94, 0.18), transparent 55%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .link-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .link-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .link-desc {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .link-meta {
+      display: flex;
+      justify-content: flex-end;
+      gap: 4px;
+      align-items: center;
+      font-size: 10px;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .tag-green {
+      border-color: rgba(34, 197, 94, 0.6);
+      background: var(--accent-soft);
+      color: #bbf7d0;
+    }
+
+    .tag-red {
+      border-color: rgba(248, 113, 113, 0.6);
+      background: var(--danger-soft);
+      color: #fecaca;
+    }
+
+    .small-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.5fr);
+      gap: 18px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 780px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 14px 14px 13px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card-body {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 2px;
+    }
+
+    .list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .meta-item {
+      font-size: 11px;
+      border-radius: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 6px 8px;
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      font-size: 11px;
+      color: var(--text);
+    }
+
+    footer {
+      padding: 10px 26px 16px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: rgba(2, 6, 23, 0.96);
+    }
+
+    @media (max-width: 780px) {
+      footer {
+        padding: 10px 18px 14px;
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .footer-link:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="logo-pill">W</div>
+        <div class="brand-text">
+          <h1>The Woods VR</h1>
+          <span>Student Project – VIT Bhopal</span>
+        </div>
+      </div>
+      <div class="badge">Project Links &amp; Info</div>
+    </header>
+
+    <main>
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <div class="hero-text">
+          <div class="hero-kicker">VR horror survival game</div>
+
+          <h2 class="hero-title">
+            Explore a <span>never-ending</span> forest filled with infected souls.
+          </h2>
+
+          <p class="hero-subtitle">
+            <strong>The Woods VR</strong> is a first-person virtual reality horror experience set 
+            in a dark forest and an eerie asylum. This page collects all the official links for the game:
+            the playable build on itch.io and the source code on GitHub.
+          </p>
+
+          <div class="pill-row">
+            <div class="pill">Engine: Unity (VR)</div>
+            <div class="pill">Platform: PC VR</div>
+            <div class="pill">Genre: Horror / Survival</div>
+          </div>
+
+          <div class="btn-row">
+            <!-- PLAY ON ITCH.IO -->
+            <a
+              href="https://kaustubh02.itch.io/the-woods-vr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              <span class="btn-icon">▶</span>
+              <span>Play on itch.io</span>
+            </a>
+
+            <!-- VIEW GITHUB REPO -->
+            <a
+              href="https://github.com/Kaustubh-Garg/The-Woods-VR"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              <span class="btn-icon">{"</>"}</span>
+              <span>View Source on GitHub</span>
+            </a>
+
+            <!-- SCROLL TO DETAILS -->
+            <a href="#details" class="btn btn-ghost">
+              <span>View project details</span>
+            </a>
+          </div>
+
+          <p class="hero-note">
+            This page is hosted using <strong>GitHub Pages</strong> for my course assignment.
+          </p>
+        </div>
+
+        <!-- RIGHT HERO CARD -->
+        <aside class="hero-card" aria-label="Quick project links">
+          <div class="hero-card-header">
+            <div>
+              <div class="hero-card-title">Project quick access</div>
+              <div style="font-size: 11px; color: var(--muted);">
+                All important links in one place
+              </div>
+            </div>
+            <span class="status-pill">
+              <span style="display:inline-flex;align-items:center;gap:6px;">
+                <span class="small-dot"></span> Live
+              </span>
+            </span>
+          </div>
+
+          <div class="hero-card-body">
+            <div>
+              <div class="env-label">Build</div>
+              <div class="link-card">
+                <div class="link-main">
+                  <div class="link-title">Play The Woods VR (itch.io)</div>
+                  <div class="link-desc">
+                    Opens the published build hosted on itch.io.
+                  </div>
+                </div>
+                <div class="link-meta">
+                  <span class="tag tag-green">Playable</span>
+                  <span>itch.io</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="env-label">Repository</div>
+              <div class="link-card">
+                <div class="link-main">
+                  <div class="link-title">The Woods VR – GitHub Repo</div>
+                  <div class="link-desc">
+                    Full Unity project with scripts, scenes and assets.
+                  </div>
+                </div>
+                <div class="link-meta">
+                  <span class="tag">C# / Unity</span>
+                  <span>GitHub</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- DETAILS + ABOUT SECTION -->
+      <section id="details" class="section-grid" aria-label="About the project">
+        <!-- ABOUT THE GAME -->
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">About the Game</h3>
+          </div>
+          <div class="card-body">
+            <p>
+              <strong>The Woods VR</strong> places the player in a dense, dark forest
+              and an abandoned asylum overrun by zombies. Armed with a flashlight
+              and a gun, the player must explore, survive, and manage fear inside
+              an environment where the night never ends.
+            </p>
+
+            <ul class="list">
+              <li>Immersive first-person VR experience.</li>
+              <li>Focus on atmosphere, tension, and environmental storytelling.</li>
+              <li>Hand-crafted terrain and layout (no procedural generation).</li>
+              <li>Asylum area filled with zombies instead of traditional cabins.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- PROJECT DETAILS -->
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Project / Technical Details</h3>
+          </div>
+          <div class="card-body">
+            <p>
+              This project was developed as part of my coursework and VR/game
+              development practice. The repository stores the Unity project,
+              while the itch.io page hosts the playable build.
+            </p>
+
+            <div class="meta-grid">
+              <div class="meta-item">
+                <div class="meta-label">Developer</div>
+                <div class="meta-value">Kaustubh Garg</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Engine</div>
+                <div class="meta-value">Unity (VR)</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Primary Platform</div>
+                <div class="meta-value">PC VR (itch.io build)</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Source Code</div>
+                <div class="meta-value">Public GitHub repository</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- HOW TO ACCESS SECTION -->
+      <section class="section-grid" aria-label="How to access">
+        <!-- HOW TO PLAY -->
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">How to Play (for evaluators)</h3>
+          </div>
+          <div class="card-body">
+            <p>
+              To play or review the project, you can use either of the following:
+            </p>
+            <ul class="list">
+              <li>
+                <strong>Play build:</strong> Open the itch.io page and follow the
+                instructions there to launch the game.
+              </li>
+              <li>
+                <strong>Inspect code:</strong> Open the GitHub repo to view
+                scripts, scenes, and project structure.
+              </li>
+            </ul>
+            <p>
+              Both links are provided above via the buttons and quick-access section.
+            </p>
+          </div>
+        </article>
+
+        <!-- ASSIGNMENT NOTE -->
+        <article class="card">
+          <div class="card-header">
+            <h3 class="card-title">Assignment Note</h3>
+          </div>
+          <div class="card-body">
+            <p>
+              This GitHub Pages site acts as a clean landing page that:
+            </p>
+            <ul class="list">
+              <li>Shows basic information about the game.</li>
+              <li>Provides a direct link to the itch.io build.</li>
+              <li>Provides a direct link to the GitHub repository.</li>
+            </ul>
+            <p>
+              You can use this URL as the main submission link for your assignment.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> The Woods VR – Project by Kaustubh Garg</div>
+      <div class="footer-links">
+        <a
+          href="https://kaustubh02.itch.io/the-woods-vr"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          Play on itch.io
+        </a>
+        <span>•</span>
+        <a
+          href="https://github.com/Kaustubh-Garg/The-Woods-VR"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          GitHub Repo
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
